@@ -34,13 +34,16 @@
   (with-open [reader (io/reader file-name)]
     (-> reader csv/read-csv csv-data->maps doall time)))
 
-(defn dictionary [] (read-csv "data/sentencing-data-dictionary.csv"))
+(defn dictionary [] (read-csv "data/data-dictionary.csv"))
 
 (defn name->path
   [s]
   (->> (string/split s #"\.")
        (map #(string/replace % #"_" "-"))
-       (mapv keyword)))
+       (mapv (fn [k]
+               (if (common/number-str? k)
+                 (common/parse-int k)
+                 (keyword k))))))
 
 (defn nesting-instructions
   [dictionary]

@@ -13,3 +13,4 @@ pom.xml.asc
 .hg/
 sqlite.db
 .DS_store
+*.numbers

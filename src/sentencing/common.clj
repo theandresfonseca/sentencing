@@ -18,8 +18,8 @@
     (= s "1")))
 
 (defn not-unknown [s] (when (and (not-empty s) (not= s ".")) s))
-
 (defn mean [xs] (/ (double (reduce + xs)) (count xs)))
+(defn number-str? [s] (nil? (re-find #"\D" s)))
 
 (defn round
   [n places]
